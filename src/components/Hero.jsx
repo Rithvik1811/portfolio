@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FiMapPin } from 'react-icons/fi'
+import { FiMapPin, FiDownload } from 'react-icons/fi'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 import profileImg from '../assets/profile.png'
 
@@ -142,6 +142,31 @@ const Hero = () => {
             >
               Research Intern at A2IL Lab
             </motion.p>
+
+            {/* Resume download */}
+            <motion.div
+              className="mb-6"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: CURTAIN + 0.9, duration: 0.45 }}
+            >
+              <motion.a
+                href="/rithvik_ramdas_ds.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white text-sm"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(99,102,241,0.5), rgba(139,92,246,0.5))',
+                  border: '1px solid rgba(129,140,248,0.35)',
+                }}
+                whileHover={{ scale: 1.05, boxShadow: '0 8px 30px rgba(99,102,241,0.35)' }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiDownload size={16} />
+                Download Resume
+              </motion.a>
+            </motion.div>
 
             {/* Social links */}
             <motion.div
