@@ -1,10 +1,27 @@
 import { motion } from 'framer-motion'
 import { FiExternalLink, FiGithub } from 'react-icons/fi'
-import { FaBrain, FaChartBar } from 'react-icons/fa'
-import { BiCodeAlt } from 'react-icons/bi'
+import { FaBrain, FaChartBar, FaRobot } from 'react-icons/fa'
 
 const Projects = () => {
   const projects = [
+    {
+      title: "Support Ticket Agent",
+      description: "RAG-powered AI agent that generates contextual draft replies for support tickets using intent classification, vector search, PII redaction, and confidence-based escalation.",
+      tags: ["RAG", "LLM", "FastAPI", "ChromaDB", "Python"],
+      icon: <FaRobot className="text-violet-400" size={22} />,
+      language: "Python",
+      github: "https://github.com/Rithvik1811/Support-Ticket-Agent",
+      gradient: "from-violet-500 to-indigo-500"
+    },
+    {
+      title: "Vassitry — Voice Assistant",
+      description: "Local, voice-first desktop assistant with wakeword activation, system controls (volume, brightness, Wi-Fi, power), site-specific search, weather forecasting, and a Gemini LLM fallback for general Q&A.",
+      tags: ["Voice AI", "NLP", "LLM", "Python", "Gemini"],
+      icon: <FaRobot className="text-purple-400" size={22} />,
+      language: "Python",
+      github: "https://github.com/KRKR1704/vassitry",
+      gradient: "from-purple-500 to-pink-500"
+    },
     {
       title: "Ocean Acidification Prediction",
       description: "Examining pH trends and oceanographic variables in the Pacific Ocean using Hybrid ML models to predict future pH levels and analyze environmental impacts.",
@@ -41,24 +58,6 @@ const Projects = () => {
       github: "https://github.com/Rithvik1811/Understanding-the-Regional-Differences-in-World-Happiness-Index",
       gradient: "from-purple-500 to-pink-400"
     },
-    {
-      title: "Know-the-Market",
-      description: "A web development project providing market insights and data visualization for informed decision making.",
-      tags: ["Web Development", "Data Visualization"],
-      icon: <BiCodeAlt className="text-yellow-500" size={24} />,
-      language: "HTML/JavaScript",
-      github: "https://github.com/Rithvik1811/Know-the-Market",
-      gradient: "from-yellow-500 to-orange-400"
-    },
-    {
-      title: "CluboMania",
-      description: "A JavaScript-based web application project showcasing frontend development skills and interactive user interfaces.",
-      tags: ["JavaScript", "Web App", "Frontend"],
-      icon: <BiCodeAlt className="text-yellow-500" size={24} />,
-      language: "JavaScript",
-      github: "https://github.com/Rithvik1811/CluboMania",
-      gradient: "from-indigo-500 to-purple-400"
-    }
   ]
 
   const containerVariants = {
@@ -83,67 +82,88 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="py-20 px-6">
+    <section id="projects" className="pt-10 pb-20 px-6" style={{ backgroundColor: '#0a0917' }}>
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <motion.div 
-          className="text-center mb-16"
+        <motion.div
+          className="text-center mb-14"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-dark mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
             Featured Projects
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-lg" style={{ color: 'rgba(165,180,252,0.55)' }}>
             A collection of my data science and machine learning projects
           </p>
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
         >
           {projects.map((project, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}
-              className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500"
-              whileHover={{ y: -10 }}
+              className="group rounded-3xl overflow-hidden flex flex-col"
+              style={{
+                backgroundColor: 'rgba(30,27,75,0.55)',
+                border: '1px solid rgba(129,140,248,0.13)',
+              }}
+              whileHover={{
+                y: -10,
+                scale: 1.02,
+                boxShadow: '0 24px 60px rgba(99,102,241,0.28)',
+                borderColor: 'rgba(167,139,250,0.4)',
+                transition: { type: 'spring', stiffness: 260, damping: 20 },
+              }}
             >
-              {/* Card Header with Gradient */}
-              <div className={`h-3 bg-gradient-to-r ${project.gradient}`}></div>
-              
-              <div className="p-6">
+              {/* Gradient accent bar */}
+              <div className={`h-1 bg-gradient-to-r ${project.gradient}`} />
+
+              <div className="p-6 flex flex-col flex-1">
                 {/* Icon and Language */}
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div
+                    className="w-11 h-11 rounded-2xl flex items-center justify-center"
+                    style={{
+                      backgroundColor: 'rgba(139,92,246,0.12)',
+                      border: '1px solid rgba(139,92,246,0.25)',
+                    }}
+                  >
                     {project.icon}
                   </div>
-                  <span className="text-xs text-gray-500 font-medium">{project.language}</span>
+                  <span className="text-xs font-medium" style={{ color: 'rgba(165,180,252,0.5)' }}>
+                    {project.language}
+                  </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-dark mb-3 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
+                <h3 className="text-lg font-bold text-white mb-2">{project.title}</h3>
 
                 {/* Description */}
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                <p className="text-sm leading-relaxed mb-4 line-clamp-3" style={{ color: 'rgba(255,255,255,0.5)' }}>
                   {project.description}
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-5 mt-auto">
                   {project.tags.map((tag, tagIdx) => (
-                    <span 
+                    <span
                       key={tagIdx}
-                      className="text-xs px-3 py-1 bg-gray-100 text-gray-600 rounded-full"
+                      className="text-xs px-3 py-1 rounded-full"
+                      style={{
+                        background: 'rgba(99,102,241,0.08)',
+                        border: '1px solid rgba(129,140,248,0.22)',
+                        color: 'rgba(165,180,252,0.8)',
+                      }}
                     >
                       {tag}
                     </span>
@@ -151,26 +171,28 @@ const Projects = () => {
                 </div>
 
                 {/* Links */}
-                <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
+                <div className="flex items-center gap-4 pt-4" style={{ borderTop: '1px solid rgba(129,140,248,0.12)' }}>
                   <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-600 hover:text-dark transition-colors"
-                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-2 text-sm font-medium"
+                    style={{ color: 'rgba(165,180,252,0.7)' }}
+                    whileHover={{ x: 4 }}
                   >
-                    <FiGithub size={18} />
-                    <span className="text-sm font-medium">View Code</span>
+                    <FiGithub size={16} />
+                    View Code
                   </motion.a>
                   <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-primary hover:text-secondary transition-colors ml-auto"
-                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-2 text-sm font-medium ml-auto"
+                    style={{ color: '#a78bfa' }}
+                    whileHover={{ x: 4 }}
                   >
-                    <span className="text-sm font-medium">Details</span>
-                    <FiExternalLink size={16} />
+                    Details
+                    <FiExternalLink size={14} />
                   </motion.a>
                 </div>
               </div>
@@ -179,7 +201,7 @@ const Projects = () => {
         </motion.div>
 
         {/* View More on GitHub */}
-        <motion.div 
+        <motion.div
           className="text-center mt-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -190,11 +212,15 @@ const Projects = () => {
             href="https://github.com/Rithvik1811"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-dark text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-colors"
-            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-white"
+            style={{
+              background: 'rgba(99,102,241,0.15)',
+              border: '1px solid rgba(129,140,248,0.3)',
+            }}
+            whileHover={{ scale: 1.05, boxShadow: '0 8px 30px rgba(99,102,241,0.3)' }}
             whileTap={{ scale: 0.95 }}
           >
-            <FiGithub size={20} />
+            <FiGithub size={18} />
             View More on GitHub
           </motion.a>
         </motion.div>

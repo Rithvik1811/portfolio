@@ -12,13 +12,20 @@ const CHIP_BG = 'rgba(99,102,241,0.08)'
 const CHIP_BORDER = 'rgba(129,140,248,0.22)'
 
 const Chip = ({ icon, name }) => (
-  <div
-    className="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium"
+  <motion.div
+    className="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium cursor-default"
     style={{ background: CHIP_BG, border: `1px solid ${CHIP_BORDER}`, color: 'rgba(255,255,255,0.75)' }}
+    whileHover={{
+      y: -4,
+      scale: 1.08,
+      boxShadow: '0 8px 24px rgba(99,102,241,0.35)',
+      borderColor: 'rgba(167,139,250,0.5)',
+      transition: { type: 'spring', stiffness: 300, damping: 18 },
+    }}
   >
     <span style={{ color: ICON_COLOR }}>{icon}</span>
     {name}
-  </div>
+  </motion.div>
 )
 
 const skillCategories = [
@@ -85,7 +92,7 @@ const skillCategories = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-24 px-6 relative" style={{ backgroundColor: '#0a0917' }}>
+    <section id="skills" className="pt-24 pb-10 px-6 relative" style={{ backgroundColor: '#0a0917' }}>
 
       {/* Aura orbs */}
       <div className="absolute top-1/3 left-1/4 w-[420px] h-[420px] rounded-full blur-3xl pointer-events-none"
@@ -118,22 +125,16 @@ const Skills = () => {
             return (
               <motion.div
                 key={i}
-                className="rounded-3xl p-7 cursor-default"
+                className="rounded-3xl p-7"
                 style={{
                   backgroundColor: 'rgba(30,27,75,0.55)',
                   border: '1px solid rgba(129,140,248,0.13)',
+                  boxShadow: '0 8px 32px rgba(99,102,241,0.07)',
                 }}
                 initial={{ opacity: 0, y: 35 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.55, delay: i * 0.1, ease: 'easeOut' }}
-                whileHover={{
-                  y: -10,
-                  scale: 1.02,
-                  boxShadow: '0 24px 60px rgba(99,102,241,0.28)',
-                  borderColor: 'rgba(167,139,250,0.4)',
-                  transition: { type: 'spring', stiffness: 260, damping: 20 },
-                }}
               >
                 <div className="flex items-center gap-3 mb-5">
                   <div

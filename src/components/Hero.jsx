@@ -138,8 +138,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: CURTAIN + 0.8, duration: 0.5 }}
             >
-              Master's in CS & Engineering · University at Buffalo, SUNY<br />
-              Research Intern at A2IL Lab · AWS Certified Solutions Architect
+              Research Intern at A2IL Lab
             </motion.p>
 
             {/* Social links */}
