@@ -162,8 +162,11 @@ const Skills = () => {
         </div>
 
         {/* AWS cert banner */}
-        <motion.div
-          className="mt-10 rounded-3xl p-8 text-center"
+        <motion.a
+          href="https://www.credly.com/badges/da29fb49-1db9-41a4-a002-bcef7d31b75f/public_url"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-10 rounded-3xl p-8 text-center block cursor-pointer"
           style={{
             background: 'linear-gradient(135deg, rgba(99,102,241,0.18) 0%, rgba(139,92,246,0.18) 100%)',
             border: '1px solid rgba(129,140,248,0.25)',
@@ -172,6 +175,10 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
+          whileHover={{
+            borderColor: 'rgba(167,139,250,0.5)',
+            boxShadow: '0 8px 30px rgba(99,102,241,0.25)',
+          }}
         >
           <div className="flex items-center justify-center gap-3 mb-3">
             <FaAws size={36} style={{ color: '#a78bfa' }} />
@@ -180,7 +187,10 @@ const Skills = () => {
           <p className="max-w-xl mx-auto" style={{ color: 'rgba(165,180,252,0.7)' }}>
             Proven expertise in designing distributed systems and deploying scalable cloud solutions
           </p>
-        </motion.div>
+          <p className="mt-3 text-sm font-medium" style={{ color: 'rgba(167,139,250,0.7)' }}>
+            View Credly Badge →
+          </p>
+        </motion.a>
 
       </div>
     </section>

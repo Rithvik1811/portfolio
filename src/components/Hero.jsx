@@ -128,6 +128,8 @@ const Hero = () => {
               <span className="text-xl md:text-2xl font-semibold text-gradient">Data Scientist</span>
               <span className="text-white/20 text-2xl font-light">|</span>
               <span className="text-xl md:text-2xl font-semibold text-gradient">ML Engineer</span>
+              <span className="text-white/20 text-2xl font-light">|</span>
+              <span className="text-xl md:text-2xl font-semibold text-gradient">Data Engineer</span>
             </motion.div>
 
             {/* Bio */}

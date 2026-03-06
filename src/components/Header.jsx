@@ -6,10 +6,13 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const navItems = [
-    { name: 'Home',     href: '#home' },
-    { name: 'Skills',   href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact',  href: '#contact' },
+    { name: 'Home',         href: '#home' },
+    { name: 'About',        href: '#about' },
+    { name: 'Education',    href: '#education' },
+    { name: 'Skills',       href: '#skills' },
+    { name: 'Publications', href: '#publications' },
+    { name: 'Projects',     href: '#projects' },
+    { name: 'Contact',      href: '#contact' },
   ]
 
   return (
@@ -65,20 +68,6 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA */}
-          <motion.a
-            href="#contact"
-            className="hidden md:flex items-center text-sm font-medium text-white px-5 py-2 rounded-full"
-            style={{
-              background: 'rgba(255,255,255,0.08)',
-              border: '1px solid rgba(255,255,255,0.15)',
-            }}
-            whileHover={{ scale: 1.05, background: 'rgba(255,255,255,0.14)' }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Let's Connect
-          </motion.a>
-
           {/* Mobile menu button */}
           <button
             className="md:hidden p-2 text-white/60 hover:text-white transition-colors"
@@ -108,14 +97,6 @@ const Header = () => {
                   {item.name}
                 </a>
               ))}
-              <a
-                href="#contact"
-                className="block mt-4 text-white text-sm font-medium text-center py-2.5 rounded-full"
-                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Let's Connect
-              </a>
             </motion.nav>
           )}
         </AnimatePresence>
