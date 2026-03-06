@@ -7,7 +7,7 @@ const CURTAIN = 0.7
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden flex items-center">
+    <section id="home" className="relative overflow-hidden flex items-center" style={{ minHeight: '80vh' }}>
 
       {/* 1. Curtain — rolls down from top */}
       <motion.div
@@ -43,7 +43,7 @@ const Hero = () => {
       />
 
       {/* 4. Content */}
-      <div className="relative z-20 max-w-7xl mx-auto w-full px-6 pt-24 pb-16">
+      <div className="relative z-20 max-w-7xl mx-auto w-full px-6 pt-20 pb-12">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
 
           {/* Photo — spring pop-out */}
