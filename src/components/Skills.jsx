@@ -92,7 +92,7 @@ const skillCategories = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="pt-24 pb-10 px-6 relative" style={{ backgroundColor: '#0a0917' }}>
+    <section id="skills" className="py-24 px-6 relative" style={{ backgroundColor: '#0a0917' }}>
 
       {/* Aura orbs */}
       <div className="absolute top-1/3 left-1/4 w-[420px] h-[420px] rounded-full blur-3xl pointer-events-none"

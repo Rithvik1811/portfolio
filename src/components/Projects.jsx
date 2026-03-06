@@ -82,7 +82,7 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="pt-10 pb-20 px-6" style={{ backgroundColor: '#0a0917' }}>
+    <section id="projects" className="py-24 px-6" style={{ backgroundColor: '#0a0917' }}>
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div

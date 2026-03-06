@@ -28,7 +28,7 @@ const publications = [
 
 const Publications = () => {
   return (
-    <section id="publications" className="pt-10 pb-24 px-6 relative" style={{ backgroundColor: '#0a0917' }}>
+    <section id="publications" className="py-24 px-6 relative" style={{ backgroundColor: '#0a0917' }}>
 
       {/* Aura orb */}
       <div className="absolute top-1/3 right-1/4 w-[350px] h-[350px] rounded-full blur-3xl pointer-events-none"
