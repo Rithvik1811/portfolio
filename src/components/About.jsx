@@ -4,13 +4,13 @@ import { FiZap, FiMonitor } from 'react-icons/fi'
 const cards = [
   {
     Icon: FiZap,
-    title: 'Currently Exploring',
-    text: "I've been expanding into new-age AI — building with RAG pipelines, LangChain, and LangGraph to develop agentic systems. Alongside that, I'm getting hands-on with big data technologies like Hadoop, Spark, PySpark, and Kafka, so I can engineer AI solutions that scale beyond a single machine.",
+    title: 'What I\'m Working On',
+    text: "Lately I've been deep in the agentic AI space — building RAG systems, experimenting with LangChain and LangGraph, and figuring out how to make LLMs actually useful in production. I'm also picking up big data tools like Spark and PySpark, because the problems I care about don't always fit on one machine.",
   },
   {
     Icon: FiMonitor,
-    title: 'Beyond the Screen',
-    text: "Outside of work, I stay sharp by following the latest AI research and experimenting with side projects that combine data and creativity. I'm a big Formula 1 fan — I rarely miss a race weekend. I also enjoy exploring new places and finding good food spots across New York.",
+    title: 'Outside of Work',
+    text: "Outside of work I love watching F1 and rarely miss a race. I also enjoy keeping up with the latest developments in AI, whether its a new model, a research paper, or just something interesting happening in the field. And whenever I get the chance I like exploring new places and trying out different food spots.",
   },
 ]
 
@@ -53,17 +53,11 @@ const About = () => {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.65, delay: 0.1, ease: 'easeOut' }}
         >
-          <p className="text-lg md:text-xl leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
-            I'm{' '}
-            <span className="font-semibold text-white">Rithvik Ramdas</span>,
-            a Computer Science graduate from the{' '}
-            <span className="font-semibold text-white">University at Buffalo, SUNY</span>{' '}
-            with a specialization in AI/ML. My background spans machine learning, deep learning,
-            data analysis, and cloud infrastructure — backed by research experience at the{' '}
-            <span className="font-semibold" style={{ color: '#a5b4fc' }}>A2IL Lab</span>{' '}
-            and industry-recognized{' '}
-            <span className="font-semibold" style={{ color: '#a5b4fc' }}>AWS Solutions Architect certification</span>.
-            I'm actively looking for full-time roles where I can turn data into meaningful decisions.
+          <p className="text-lg leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>
+            Fresh out of my Master's in Computer Science at the{' '}
+            <span className="text-white font-medium">University at Buffalo</span>, I have spent the last couple of years getting really good at one thing — turning data into something useful.
+            That means digging into datasets and finding patterns, building and shipping ML models, wiring up the pipelines that feed them, and lately, working with LLMs and RAG to build systems that actually reason.
+            I like owning problems across the full stack and I am at my best when I get to do all of the above.
           </p>
         </motion.div>
 
@@ -103,7 +97,7 @@ const About = () => {
                 >
                   <Icon size={18} style={{ color: '#a78bfa' }} />
                 </div>
-                <h3 className="text-base font-bold text-white mb-3 tracking-wide uppercase" style={{ letterSpacing: '0.06em' }}>
+                <h3 className="text-base font-semibold text-white mb-3">
                   {card.title}
                 </h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>

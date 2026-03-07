@@ -54,12 +54,12 @@ const Header = () => {
           </motion.a>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
             {navItems.map((item) => (
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium"
+                className="text-xs xl:text-sm font-medium"
                 style={{ color: 'rgba(255,255,255,0.55)' }}
                 whileHover={{ y: -2, color: '#ffffff' }}
                 whileTap={{ scale: 0.95 }}
@@ -71,7 +71,7 @@ const Header = () => {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 text-white/60 hover:text-white transition-colors"
+            className="lg:hidden p-2 text-white/60 hover:text-white transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
@@ -86,7 +86,7 @@ const Header = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25 }}
-              className="md:hidden overflow-hidden pt-4 pb-2"
+              className="lg:hidden overflow-hidden pt-4 pb-2"
             >
               {navItems.map((item) => (
                 <a

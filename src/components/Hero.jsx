@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion'
 import { FiMapPin, FiDownload } from 'react-icons/fi'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
-import profileImg from '../assets/profile.png'
+import profileImg from '../assets/profile.jpg'
 
 const CURTAIN = 0.7
 
 const Hero = () => {
   return (
-    <section id="home" className="relative overflow-hidden flex items-center" style={{ minHeight: '80vh' }}>
+    <section id="home" className="relative overflow-hidden flex items-center" style={{ minHeight: '100vh' }}>
 
       {/* 1. Curtain — rolls down from top */}
       <motion.div
@@ -44,7 +44,7 @@ const Hero = () => {
 
       {/* 4. Content */}
       <div className="relative z-20 max-w-7xl mx-auto w-full px-6 pt-20 pb-12">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center lg:justify-center">
 
           {/* Photo — spring pop-out */}
           <motion.div
@@ -56,19 +56,19 @@ const Hero = () => {
             <div className="relative">
               {/* Glow ring behind photo */}
               <motion.div
-                className="absolute -inset-3 rounded-3xl blur-2xl pointer-events-none"
+                className="absolute -inset-3 rounded-full blur-2xl pointer-events-none"
                 style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.45), rgba(139,92,246,0.35))' }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: CURTAIN + 0.5, duration: 0.8 }}
               />
               {/* Photo */}
-              <div className="relative w-64 h-64 lg:w-80 lg:h-[420px] rounded-3xl overflow-hidden ring-2 ring-white/20 shadow-2xl">
+              <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden ring-2 ring-white/20 shadow-2xl">
                 <img
                   src={profileImg}
                   alt="Rithvik Ramdas"
-                  className="w-full h-full object-cover object-top"
-                  style={{ transform: 'scale(1.15)', transformOrigin: 'top center' }}
+                  className="w-full h-full object-cover object-center"
+                  style={{ transform: 'scale(1.1)', transformOrigin: 'center 15%' }}
                 />
                 <div className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
                   style={{ background: 'linear-gradient(to top, rgba(30,27,75,0.5), transparent)' }}
@@ -88,7 +88,7 @@ const Hero = () => {
           </motion.div>
 
           {/* Text content */}
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 flex flex-col items-center lg:items-start text-center lg:text-left">
 
             {/* OPEN TO WORK */}
             <motion.div
@@ -110,12 +110,25 @@ const Hero = () => {
 
             {/* Name */}
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-3"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: CURTAIN + 0.5, duration: 0.6, ease: 'easeOut' }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-3 flex gap-4 justify-center lg:justify-start"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.18, delayChildren: CURTAIN + 0.5 } },
+              }}
             >
-              Rithvik Ramdas
+              {['Rithvik', 'Ramdas'].map((word) => (
+                <motion.span
+                  key={word}
+                  variants={{
+                    hidden: { opacity: 0, y: 40, filter: 'blur(6px)' },
+                    visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6, ease: 'easeOut' } },
+                  }}
+                >
+                  {word}
+                </motion.span>
+              ))}
             </motion.h1>
 
             {/* Roles */}
@@ -127,7 +140,7 @@ const Hero = () => {
             >
               <span className="text-xl md:text-2xl font-semibold text-gradient">Data Scientist</span>
               <span className="text-white/20 text-2xl font-light">|</span>
-              <span className="text-xl md:text-2xl font-semibold text-gradient">ML Engineer</span>
+              <span className="text-xl md:text-2xl font-semibold text-gradient">AI/ML Engineer</span>
               <span className="text-white/20 text-2xl font-light">|</span>
               <span className="text-xl md:text-2xl font-semibold text-gradient">Data Engineer</span>
             </motion.div>

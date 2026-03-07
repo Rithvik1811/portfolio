@@ -34,7 +34,7 @@ const Contact = () => {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-6">
               <motion.a
                 href="mailto:rithvik.ramdas11@gmail.com"
                 className="flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white"

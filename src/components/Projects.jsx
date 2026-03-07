@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiExternalLink, FiGithub, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { FaBrain, FaChartBar, FaRobot } from 'react-icons/fa'
@@ -80,15 +80,47 @@ const projects = [
 
 const VISIBLE = 2
 
+const GAP = 24
+
 const Projects = () => {
   const [current, setCurrent] = useState(0)
-  const maxIndex = projects.length - VISIBLE
+  const [visible, setVisible] = useState(2)
+  const containerRef = useRef(null)
+  const [cardWidth, setCardWidth] = useState(0)
+  const touchStartX = useRef(null)
 
+  useEffect(() => {
+    const calc = () => {
+      const v = window.innerWidth < 768 ? 1 : 2
+      setVisible(v)
+      if (containerRef.current) {
+        setCardWidth(v === 1
+          ? containerRef.current.offsetWidth
+          : (containerRef.current.offsetWidth - GAP) / 2
+        )
+      }
+    }
+    calc()
+    setCurrent(0)
+    window.addEventListener('resize', calc)
+    return () => window.removeEventListener('resize', calc)
+  }, [])
+
+  const maxIndex = projects.length - visible
   const prev = () => setCurrent(i => Math.max(0, i - 1))
   const next = () => setCurrent(i => Math.min(maxIndex, i + 1))
 
+  const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX }
+  const onTouchEnd = (e) => {
+    if (touchStartX.current === null) return
+    const delta = touchStartX.current - e.changedTouches[0].clientX
+    if (delta > 40) next()
+    else if (delta < -40) prev()
+    touchStartX.current = null
+  }
+
   return (
-    <section id="projects" className="py-24 px-6" style={{ backgroundColor: '#0a0917' }}>
+    <section id="projects" className="py-24 px-6 md:px-10 lg:px-6" style={{ backgroundColor: '#0a0917' }}>
       <div className="max-w-7xl mx-auto">
 
         {/* Section Header */}
@@ -110,10 +142,10 @@ const Projects = () => {
         {/* Carousel */}
         <div className="relative">
 
-          {/* Prev button */}
+          {/* Prev / Next buttons — side on desktop, hidden (moved below) on mobile */}
           <motion.button
             onClick={prev}
-            className="absolute -left-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center"
+            className="hidden md:flex absolute -left-12 lg:-left-14 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-11 lg:h-11 rounded-full items-center justify-center"
             style={{
               background: current === 0 ? 'rgba(30,27,75,0.3)' : 'rgba(99,102,241,0.25)',
               border: '1px solid rgba(129,140,248,0.25)',
@@ -126,10 +158,9 @@ const Projects = () => {
             <FiChevronLeft size={20} />
           </motion.button>
 
-          {/* Next button */}
           <motion.button
             onClick={next}
-            className="absolute -right-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center"
+            className="hidden md:flex absolute -right-12 lg:-right-14 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-11 lg:h-11 rounded-full items-center justify-center"
             style={{
               background: current === maxIndex ? 'rgba(30,27,75,0.3)' : 'rgba(99,102,241,0.25)',
               border: '1px solid rgba(129,140,248,0.25)',
@@ -143,10 +174,15 @@ const Projects = () => {
           </motion.button>
 
           {/* Cards track */}
-          <div className="overflow-hidden">
+          <div
+            className="overflow-hidden"
+            ref={containerRef}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+          >
             <motion.div
               className="flex gap-6"
-              animate={{ x: `calc(-${current} * (100% / ${VISIBLE} + 8px))` }}
+              animate={{ x: -(current * (cardWidth + GAP)) }}
               transition={{ type: 'spring', stiffness: 300, damping: 35 }}
             >
               {projects.map((project, idx) => (
@@ -154,7 +190,7 @@ const Projects = () => {
                   key={idx}
                   className="rounded-3xl overflow-hidden flex flex-col flex-shrink-0"
                   style={{
-                    width: `calc((100% - ${(VISIBLE - 1) * 24}px) / ${VISIBLE})`,
+                    width: cardWidth || `calc((100% - ${GAP}px) / ${VISIBLE})`,
                     backgroundColor: 'rgba(30,27,75,0.55)',
                     border: '1px solid rgba(129,140,248,0.13)',
                   }}
@@ -235,8 +271,30 @@ const Projects = () => {
             </motion.div>
           </div>
 
+          {/* Mobile prev/next buttons */}
+          <div className="flex md:hidden justify-center gap-4 mt-6">
+            {[{ fn: prev, icon: <FiChevronLeft size={20} />, disabled: current === 0 },
+              { fn: next, icon: <FiChevronRight size={20} />, disabled: current === maxIndex }
+            ].map(({ fn, icon, disabled }, i) => (
+              <motion.button
+                key={i}
+                onClick={fn}
+                className="w-11 h-11 rounded-full flex items-center justify-center"
+                style={{
+                  background: disabled ? 'rgba(30,27,75,0.3)' : 'rgba(99,102,241,0.25)',
+                  border: '1px solid rgba(129,140,248,0.25)',
+                  color: disabled ? 'rgba(165,180,252,0.25)' : '#a78bfa',
+                  cursor: disabled ? 'not-allowed' : 'pointer',
+                }}
+                whileTap={!disabled ? { scale: 0.95 } : {}}
+              >
+                {icon}
+              </motion.button>
+            ))}
+          </div>
+
           {/* Dot indicators */}
-          <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center gap-2 mt-4">
             {Array.from({ length: maxIndex + 1 }).map((_, i) => (
               <button
                 key={i}

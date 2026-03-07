@@ -78,6 +78,7 @@ const skillCategories = [
     skills: [
       { name: 'PostgreSQL', icon: <FaDatabase /> },
       { name: 'MongoDB',    icon: <SiMongodb /> },
+      { name: 'FAISS',      icon: <FaDatabase /> },
     ],
   },
   {
@@ -180,9 +181,9 @@ const Skills = () => {
             boxShadow: '0 8px 30px rgba(99,102,241,0.25)',
           }}
         >
-          <div className="flex items-center justify-center gap-3 mb-3">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-3">
             <FaAws size={36} style={{ color: '#a78bfa' }} />
-            <h3 className="text-2xl font-bold text-white">AWS Solutions Architect Certified</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-white">AWS Solutions Architect Certified</h3>
           </div>
           <p className="max-w-xl mx-auto" style={{ color: 'rgba(165,180,252,0.7)' }}>
             Proven expertise in designing distributed systems and deploying scalable cloud solutions
